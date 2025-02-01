@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 const MainLayout = () => {
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
-    <div>
+     
+    <div className="bg-gray-500">
      <Button>Click me</Button>
     </div>
   );
