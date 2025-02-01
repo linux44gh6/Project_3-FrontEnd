@@ -1,11 +1,13 @@
+import LoginForm from '@/myComponents/LoginForm';
 import React from 'react';
 
 const Login = () => {
+   
     return (
-        <div>
-           <h1>this is login page</h1>
-        </div>
-    );
+     <div>
+       <LoginForm/>   
+     </div>
+    )
 }
 
 export default Login;

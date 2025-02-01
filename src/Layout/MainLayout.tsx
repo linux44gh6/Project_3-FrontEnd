@@ -1,12 +1,11 @@
 
-
-
-
+import { Button } from "@/components/ui/button";
+import React from "react";
 const MainLayout = () => {
   return (
+    // eslint-disable-next-line react/react-in-jsx-scope
     <div>
-      <h1>this is main layout</h1>
-    
+     <Button>Click me</Button>
     </div>
   );
 };
