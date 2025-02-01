@@ -1,11 +1,11 @@
-import About from "../Pages/UsersPages/About";
-import Contact from "../Pages/UsersPages/contact";
-import Home from "../Pages/UsersPages/Home";
 
+import About from "../Pages/UsersPages/About";
+import Home from "../Pages/UsersPages/Home";
+import React from "react";
 const userPath=[
     {
         name:"Home",
-        path:'/home',
+        path:'/',
         element:<Home/>
     },
     {
@@ -13,15 +13,5 @@ const userPath=[
         path:'/about',
         element:<About/>
     },
-    {
-        name:"Contact",
-        path:'/contact',
-        element:<Contact/>
-    },
-    {
-        name:"Home",
-        path:'/home',
-        element:<Home/>
-    }
 ]
 export default userPath

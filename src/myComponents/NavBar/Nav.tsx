@@ -21,7 +21,7 @@ const Nav = () => {
       <img className='w-24' src={img} alt="" />
       </div>
       <div className="w-9/12">
-       <Input  placeholder="Search" />
+       <Input className="bg-gray-200" type="text"  placeholder="Search your item" />
       </div>
       <div className=" flex justify-between items-center space-x-4">
       <IoPersonOutline size={34} />
@@ -35,7 +35,7 @@ const Nav = () => {
   <NavigationMenu>
   <NavigationMenuList>
     <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Item One</NavigationMenuTrigger>
+      <NavigationMenuTrigger className="font-semibold text-lg">Stationery</NavigationMenuTrigger>
       <NavigationMenuContent>
       <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {components.map((component) => (
@@ -45,7 +45,7 @@ const Nav = () => {
       </NavigationMenuContent>
     </NavigationMenuItem>
     <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Item One</NavigationMenuTrigger>
+      <NavigationMenuTrigger className="font-semibold text-lg">Home Goods</NavigationMenuTrigger>
       <NavigationMenuContent>
       <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {components.map((component) => (
@@ -55,7 +55,7 @@ const Nav = () => {
       </NavigationMenuContent>
     </NavigationMenuItem>
     <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Item One</NavigationMenuTrigger>
+      <NavigationMenuTrigger className="font-semibold text-lg">Toys & Accessories</NavigationMenuTrigger>
       <NavigationMenuContent>
       <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {components.map((component) => (
@@ -65,7 +65,7 @@ const Nav = () => {
       </NavigationMenuContent>
     </NavigationMenuItem>
     <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Item One</NavigationMenuTrigger>
+      <NavigationMenuTrigger className="font-semibold text-lg">Collections</NavigationMenuTrigger>
       <NavigationMenuContent>
       <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {components.map((component) => (
@@ -75,7 +75,7 @@ const Nav = () => {
       </NavigationMenuContent>
     </NavigationMenuItem>
     <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Item One</NavigationMenuTrigger>
+      <NavigationMenuTrigger className="font-semibold text-lg">Brands</NavigationMenuTrigger>
       <NavigationMenuContent>
       <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {components.map((component) => (
@@ -85,7 +85,7 @@ const Nav = () => {
       </NavigationMenuContent>
     </NavigationMenuItem>
     <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Item One</NavigationMenuTrigger>
+      <NavigationMenuTrigger className="font-semibold text-lg">Clearance</NavigationMenuTrigger>
       <NavigationMenuContent>
       <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {components.map((component) => (
@@ -95,7 +95,7 @@ const Nav = () => {
       </NavigationMenuContent>
     </NavigationMenuItem>
     <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Item One</NavigationMenuTrigger>
+      <NavigationMenuTrigger className="font-semibold text-lg">New Arrivals</NavigationMenuTrigger>
       <NavigationMenuContent>
       <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {components.map((component) => (
@@ -104,17 +104,7 @@ const Nav = () => {
             </ul>
       </NavigationMenuContent>
     </NavigationMenuItem>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger className="font-semibold text-lg">Item One</NavigationMenuTrigger>
-      <NavigationMenuContent>
-      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
-                <NavLink className={'font-semibold'} key={component.href} to={component.href}>{component.title}</NavLink>
-              ))}
-            </ul>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-   
+  
     <NavigationMenuItem>
             <NavLink className={'font-semibold'} to={'/about'}>About</NavLink>
     </NavigationMenuItem>
