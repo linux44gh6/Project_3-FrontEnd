@@ -1,11 +1,10 @@
+import Nav from '@/myComponents/NavBar/Nav';
+import React from 'react';
 
-import { Button } from "@/components/ui/button";
-import React from "react";
 const MainLayout = () => {
   return (
-     
-    <div className="bg-gray-500">
-     <Button>Click me</Button>
+    <div>
+      <Nav />
     </div>
   );
 };
