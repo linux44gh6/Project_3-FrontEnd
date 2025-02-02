@@ -16,7 +16,7 @@ const Testimonials = () => {
         <div className='mt-20 '>
             <h1 className=' text-center font-bold text-4xl'>Store Reviews</h1>
             <div className=" flex justify-center items-center mt-10">
-                <Carousel className="w-full max-w-2xl">
+                <Carousel  className="w-full max-w-2xl">
                     <CarouselContent>
                         {Array.from({ length: 5 }).map((_, index) => (
                             <CarouselItem key={index}>
@@ -25,7 +25,7 @@ const Testimonials = () => {
                                         <AvatarImage className='w-20 rounded-full mx-auto' src="https://github.com/shadcn.png" />
                                         <AvatarFallback>CN</AvatarFallback>
                                     </Avatar>
-                                    <span className="text-4xl font-semibold text-center"> This was a really positive shopping experience. Fast service. Lovely presentation of the goods. Great craftsmanship. And also wonderful packaging. Thank you Bungu!</span>
+                                    <span className="text-2xl text-center"> This was a really positive shopping experience. Fast service. Lovely presentation of the goods. Great craftsmanship. And also wonderful packaging. Thank you Bungu!</span>
                                     <div className='flex justify-center items-center mt-4'>
                                     <IoStarSharp className='size-10'/>
                                     <IoStarSharp className='size-10'/>
