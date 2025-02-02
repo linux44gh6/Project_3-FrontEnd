@@ -8,12 +8,13 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'sonner';
 import { verifyToken } from '@/Utils/verifyToken';
 import { setUser } from '@/Redux/Slice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 type TLoginProps = {
     email: string;
     password: string;
 }
 const LoginForm = () => {
+  const navigate=useNavigate()
     const dispatch = useDispatch()
     const [login]=useLoginMutation()
      const form = useForm<{ email: string,password:string }>({
@@ -30,6 +31,7 @@ const LoginForm = () => {
                     const user=verifyToken(result?.data?.accessToken)
                     dispatch(setUser({user:user,token:result?.data?.accessToken}))
                     toast.success('Login Success',{id:loadingId})
+                    navigate('/')
                     console.log(user);
                     console.log(result);
 

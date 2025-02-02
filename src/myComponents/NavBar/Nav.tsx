@@ -13,7 +13,21 @@ import { components } from "@/myComponents/NavComponents/Components";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/Redux/Store";
+import CustomDialog from "../Dialog/Dialog";
+// import { useGetAllProductsQuery } from "@/Redux/Features/ProductMangement/getAllProdcuts";
+
+import { setSearchQuery } from "@/Redux/Features/ProductSlice/SearchSlice";
 const Nav = () => {
+ const dispatch=useDispatch()
+//  const search=useSelector((state:RootState)=>state.search)
+ 
+  const cart=useSelector((state:RootState)=>state.cart)
+  const totalQuantity=cart.totalQuantity
+  // const {data:product}=useGetAllProductsQuery(undefined)
+  
   return (
    <div className="border-b-2 border-gray-200 shadow-sm sticky top-0 z-50 bg-white">
     <div className="flex justify-around items-center">
@@ -21,11 +35,13 @@ const Nav = () => {
       <NavLink to={'/'}><img className='w-24' src={img} alt="" /></NavLink>
       </div>
       <div className="w-9/12">
-       <Input className="bg-gray-200" type="text"  placeholder="Search your item" />
+       <Input 
+         onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+       className="bg-gray-200" type="text"  placeholder="Search your item" />
       </div>
       <div className=" flex justify-between items-center space-x-4">
-      <IoPersonOutline size={34} />
-      <AiOutlineShoppingCart size={34} />
+      <CustomDialog button={<IoPersonOutline size={34} />} />
+      <NavLink className={'relative'} to={'/cart'}><AiOutlineShoppingCart size={34} /> <Badge className="absolute -top-2 -left-2">{totalQuantity}</Badge></NavLink>
     </div>
     </div>
      <div className=" flex justify-center items-center">

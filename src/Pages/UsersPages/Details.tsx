@@ -4,7 +4,14 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Rating  from 'react-rating';
 import { FaStar } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { toast } from 'sonner';
 const Details = () => {
+    const dispatch = useDispatch()
+    const handleToCart = (data) => {
+        dispatch({type:'cart/addItemToCart',payload:data})
+        toast.success('Product added to cart')
+    }
     const { id } = useParams()
     console.log(
         id
@@ -34,7 +41,7 @@ const Details = () => {
                         <span className="px-4">0</span>
                         <button className="px-3 py-1 font-bold text-xl bg-slate-200 text-black rounded-r">+</button>
                     </div>
-                    <Button className=' w-1/2 bg-white text-black border border-black hover:bg-white'>Add to Cart</Button>
+                    <Button onClick={()=>handleToCart(product?.data)} className=' w-1/2 bg-white text-black border border-black hover:bg-white'>Add to Cart</Button>
 
                 </div>
             </div>
