@@ -9,17 +9,25 @@ import {
   } from "@/components/ui/card"
 import { Button } from '@/components/ui/button';
 import { TProduct } from '@/Types/productsType';
+import { useNavigate } from 'react-router-dom';
   
 const Featured = () => {
+  const navigate = useNavigate();
     const { data: product } = useGetAllProductsQuery(undefined);
     console.log(product);
+
+    const handleToShowDetails = (id:string) => {
+        console.log('Show Details');
+        console.log(id);
+       navigate(`/details/${id}`);
+    }
     return (
         <div className='mt-10'>
            <h2 className="text-4xl font-bold text-center mb-6">Featured Products</h2>
            <div>
                 <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-2">
                      {product?.data?.map((product:TProduct) => (
-                         <Card key={product.id}>
+                         <Card key={product._id}>
                          <CardHeader>
                           <img className='' src={product.image} alt="" />
                          </CardHeader>
@@ -28,7 +36,7 @@ const Featured = () => {
                          <CardTitle>{product.title}</CardTitle>
                          </CardContent>
                          <CardFooter className='flex justify-between'>
-                            <Button className=" bg-white text-black border border-black w-full hover:bg-white hover:scale-105 transition duration-200">View Details</Button>
+                            <Button onClick={()=>handleToShowDetails(product?._id)}  className=" bg-white text-black border border-black w-full hover:bg-white hover:scale-105 transition duration-200">View Details</Button>
                          </CardFooter>
                        </Card>
                      ))}

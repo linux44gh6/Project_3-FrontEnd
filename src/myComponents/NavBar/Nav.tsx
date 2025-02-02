@@ -18,7 +18,7 @@ const Nav = () => {
    <div className="border-b-2 border-gray-200 shadow-sm sticky top-0 z-50 bg-white">
     <div className="flex justify-around items-center">
     <div>
-      <img className='w-24' src={img} alt="" />
+      <NavLink to={'/'}><img className='w-24' src={img} alt="" /></NavLink>
       </div>
       <div className="w-9/12">
        <Input className="bg-gray-200" type="text"  placeholder="Search your item" />

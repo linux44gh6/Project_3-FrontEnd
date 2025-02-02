@@ -2,7 +2,7 @@ export type TProduct={
     title:string;
     image:string;
     price:number;
-    id:number;
+    _id:string;
     description:string;
     rating:number;
 }
