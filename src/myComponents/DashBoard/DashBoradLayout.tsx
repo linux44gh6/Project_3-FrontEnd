@@ -5,23 +5,31 @@ import UserDashBoard from './UserDashBoard';
 import AdminDashboard from './AdminDashboard';
 import Nav from '../NavBar/Nav';
 import Footer from '../Footer/Footer';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const DashBoradLayout = () => {
-    const user = useSelector((state: RootState) => state.auth.user);
-    const role = user.userRole;
+    const navigate=useNavigate()
+    const user = useSelector((state: RootState) => state.auth.user) as { userRole: string } | null;
+    if(!user){
+        navigate('/login')
+    }
+    const role = user?.userRole;
     console.log(role);
 
     return (
         <div>
-            <Nav /> {/* Add your Nav component here */}
-            
-            <div>
-                {/* Conditional rendering for dashboard based on user role */}
-                {role === 'user' && <UserDashBoard />}
-                {role === 'admin' && <AdminDashboard />}
-            </div>
-            
-            <Footer /> {/* Add your Footer component here */}
+          {user?
+             <div>
+                <Nav />
+             <div className='mt-1'>
+                 {role === 'user' && <UserDashBoard />}
+                 {role === 'admin' && <AdminDashboard />}
+             </div>
+             
+             <Footer /> 
+             </div>:
+             <Navigate to={'/login'}></Navigate>
+          }
         </div>
     );
 };
