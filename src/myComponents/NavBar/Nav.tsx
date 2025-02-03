@@ -20,16 +20,19 @@ import CustomDialog from "../Dialog/Dialog";
 // import { useGetAllProductsQuery } from "@/Redux/Features/ProductMangement/getAllProdcuts";
 
 import { setSearchQuery } from "@/Redux/Features/ProductSlice/SearchSlice";
+import DropDown from "../DropDown/DropDown";
+
 const Nav = () => {
  const dispatch=useDispatch()
 //  const search=useSelector((state:RootState)=>state.search)
  
   const cart=useSelector((state:RootState)=>state.cart)
+  const user=useSelector((state:RootState)=>state.auth)
+  console.log(user);
   const totalQuantity=cart.totalQuantity
   // const {data:product}=useGetAllProductsQuery(undefined)
-  
   return (
-   <div className="border-b-2 border-gray-200 shadow-sm sticky top-0 z-50 bg-white">
+   <div className="border-b-2 border-gray-200 shadow-sm  bg-white">
     <div className="flex justify-around items-center">
     <div>
       <NavLink to={'/'}><img className='w-24' src={img} alt="" /></NavLink>
@@ -40,7 +43,10 @@ const Nav = () => {
        className="bg-gray-200" type="text"  placeholder="Search your item" />
       </div>
       <div className=" flex justify-between items-center space-x-4">
-      <CustomDialog button={<IoPersonOutline size={34} />} />
+        {user?<DropDown button={<IoPersonOutline size={34} />} />:
+          <CustomDialog button={<IoPersonOutline size={34} />} />
+        }
+     
       <NavLink className={'relative'} to={'/cart'}><AiOutlineShoppingCart size={34} /> <Badge className="absolute -top-2 -left-2">{totalQuantity}</Badge></NavLink>
     </div>
     </div>

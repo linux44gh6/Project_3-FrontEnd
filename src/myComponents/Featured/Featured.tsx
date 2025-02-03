@@ -18,7 +18,7 @@ const Featured = () => {
   const { data: product } = useGetAllProductsQuery(undefined);
   const searchQuery = useSelector((state: RootState) => state.search.query);
   const filteredProducts = product?.data
-    ?.filter((p) => p.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    ?.filter((p: { title: string; }) => p.title.toLowerCase().includes(searchQuery.toLowerCase()))
     .slice(0, 6);
 
   const handleToShowDetails = (id: string) => {

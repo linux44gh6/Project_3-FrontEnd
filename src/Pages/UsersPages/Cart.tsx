@@ -3,21 +3,43 @@ import { Card, CardContent,  CardHeader } from '@/components/ui/card';
 import { RootState } from '@/Redux/Store';
 import React from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaRegTrashCan } from "react-icons/fa6";
 import { Button } from '@/components/ui/button';
+import { useCreateOrderMutation } from '@/Redux/Features/ProductMangement/CreateOrder';
+import { toast } from 'sonner';
 const Cart = () => {
+    const dispatch=useDispatch()
+    const [createOrder]=useCreateOrderMutation()
     const data=useSelector((state:RootState)=>state.cart)
-    console.log(data);
+    // const user=useSelector((state:RootState)=>state.auth)
+    // console.log(data);
+
     const sumTotal=data.items.map((item)=>item.price*item.totalQuantity).reduce((a,b)=>a+b,0).toFixed(2)
-    console.log(sumTotal);
+    const orderData = {
+        products: data.items.map(item => ({
+          productId: item._id, 
+          quantity: item.totalQuantity || 1
+        })),
+        status: "Pending",
+        totalAmount: sumTotal
+      };
+      
+    console.log("orde4r",orderData);
+    const handleToCheckOut=async()=>{
+        const result=await createOrder(orderData).unwrap()
+        console.log(result);
+        if(result.success){
+            toast.success("Order Confirmed")
+        }
+    }
     return (
         <div className='mt-10 px-5 flex justify-between '>
            <div className='flex flex-col gap-5 w-1/2 '>
            {
                 data.items.map((item)=>{
                     return(
-                     <div key={item.id} className='flex flex-col '>
+                     <div key={item._id} className='flex flex-col '>
                           <Card className='flex w-full  mb-5'>
                         <CardHeader className=''>
                             <img className='w-24' src={item.image} alt="" />
@@ -56,7 +78,7 @@ const Cart = () => {
                         <h1 className='text-2xl font-bold'>SubTotal:</h1>
                         <h2 className='text-2xl font-bold'>${sumTotal}</h2>
                     </div>
-                    <Button className='w-full'>CheckOut</Button>
+                    <Button onClick={handleToCheckOut} className='w-full'>CheckOut</Button>
                 </CardContent>
             </Card>
            </div>
