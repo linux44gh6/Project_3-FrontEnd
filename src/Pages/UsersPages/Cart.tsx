@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { RootState } from '@/Redux/Store';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FaRegTrashCan } from 'react-icons/fa6';
 import { Button } from '@/components/ui/button';
 import { useCreateOrderMutation } from '@/Redux/Features/ProductMangement/CreateOrder';
@@ -9,9 +9,9 @@ import { toast } from 'sonner';
 import { usePaymentMutation } from '@/Redux/Features/Payment/Payment';
 import { loadStripe } from '@stripe/stripe-js';
 
+
 const Cart = () => {
   const [payment, { isLoading }] = usePaymentMutation();
-  const dispatch = useDispatch();
   const [createOrder] = useCreateOrderMutation();
   const data = useSelector((state: RootState) => state.cart);
 
@@ -39,8 +39,14 @@ const Cart = () => {
 
   const stripePromise = loadStripe(import.meta.env.VITE_PUBLIC_KEY);
 
+ 
   const handleToCheckOut = async () => {
+    if (data.items.length === 0) {
+        toast.error('Your cart is empty! Please add items before proceeding.');
+        return; // Stop execution if cart is empty
+      }
     try {
+        
       // Create order first
       const orderResult = await createOrder(orderData).unwrap();
       if (orderResult.success) {
@@ -48,7 +54,6 @@ const Cart = () => {
 
         // Proceed to payment if order is confirmed
         const response = await payment(paymentData).unwrap();
-
         if (response?.data?.sessionId) {
           const stripe = await stripePromise;
           if (!stripe) {
@@ -57,7 +62,6 @@ const Cart = () => {
           }
           // Redirect user to Stripe
           const result = await stripe.redirectToCheckout({ sessionId: response.data.sessionId });
-
           if (result.error) {
             console.error('Stripe Checkout Error:', result.error.message);
           }
@@ -116,9 +120,13 @@ const Cart = () => {
               <h1 className="text-2xl font-bold">SubTotal:</h1>
               <h2 className="text-2xl font-bold">${sumTotal}</h2>
             </div>
-            <Button onClick={handleToCheckOut} className="w-full">
+           {
+            data?.items.length<=0? <Button onClick={handleToCheckOut} disabled className="w-full">
+            {isLoading ? 'Processing...' : 'Order Now'}
+          </Button>: <Button onClick={handleToCheckOut} className="w-full">
               {isLoading ? 'Processing...' : 'Order Now'}
             </Button>
+           }
           </CardContent>
         </Card>
       </div>

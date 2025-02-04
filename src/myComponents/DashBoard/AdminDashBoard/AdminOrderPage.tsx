@@ -11,16 +11,40 @@ import {
 import { useGetAllOrderQuery } from '@/Redux/Features/ProductMangement/getAllOrder';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useUpdateOrderMutation } from '@/Redux/Features/ProductMangement/UpdateOrder';
+import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 
 const AdminOrderPage = () => {
-    const { data,isLoading } = useGetAllOrderQuery(undefined)
+    const { data,isLoading,refetch } = useGetAllOrderQuery(undefined)
+    const [update]=useUpdateOrderMutation()
     console.log(data?.data);
     // data?.data?.map((product) =>
     //     product?.products?.map((p)=>{
     //         console.log(p?.productId?.title);
     //     })
     // );
-    
+    const handelTOApprove=(id)=>{
+        const updatedData={
+            "status":"Shipped"
+        }
+          Swal.fire({
+                title: "Are you sure?",
+                text: "The Order will Approve for shipped",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#000",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Approve"
+              }).then(async(result) => {
+                if (result.isConfirmed) {
+                   const result= await update({data:updatedData,id}).unwrap()
+                   console.log(result);
+                   toast.success('Order has been Approved')
+                  refetch()
+                }
+              });
+    }
     if (isLoading) {
         return (
             <div className="space-y-2">
@@ -56,11 +80,12 @@ const AdminOrderPage = () => {
                      <TableCell>{order?.status}</TableCell>
                      <TableCell className="text-right">{order?.totalAmount}</TableCell>
                      <TableCell className="text-right">
-                        <Button>Shipping</Button>
+                        {order?.status==='Shipped'?<Button disabled onClick={()=>handelTOApprove(order._id)}>Shipped</Button>:<Button onClick={()=>handelTOApprove(order._id)}>Approve</Button>
+
+                        }
                      </TableCell>
                  </TableRow>
                 ))
-                  
                 }
             </TableBody>
         </Table>
