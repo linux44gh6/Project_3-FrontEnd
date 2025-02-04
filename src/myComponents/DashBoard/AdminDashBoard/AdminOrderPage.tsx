@@ -10,15 +10,30 @@ import {
 } from "@/components/ui/table";
 import { useGetAllOrderQuery } from '@/Redux/Features/ProductMangement/getAllOrder';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const AdminOrderPage = () => {
-    const { data } = useGetAllOrderQuery(undefined)
+    const { data,isLoading } = useGetAllOrderQuery(undefined)
     console.log(data?.data);
     // data?.data?.map((product) =>
     //     product?.products?.map((p)=>{
     //         console.log(p?.productId?.title);
     //     })
     // );
+    
+    if (isLoading) {
+        return (
+            <div className="space-y-2">
+                <Skeleton className="w-full h-[40px] rounded-lg" />
+                <Skeleton className="w-full h-[40px] rounded-lg" />
+                <Skeleton className="w-full h-[40px] rounded-lg" />
+                <Skeleton className="w-full h-[40px] rounded-lg" />
+                <Skeleton className="w-full h-[40px] rounded-lg" />
+                <Skeleton className="w-full h-[40px] rounded-lg" />
+            </div>
+        );
+    }
+
     return (
         <Table>
             <TableCaption>A list of your recent invoices.</TableCaption>
@@ -33,7 +48,7 @@ const AdminOrderPage = () => {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {data?.data?.map((order,index)=>(
+                {data?.data?.map((order,index:number)=>(
                      <TableRow key={order._id}>
                      <TableCell className="font-medium">{index+1}</TableCell>
                      <TableCell>{order?.userId?.name}</TableCell>
