@@ -10,6 +10,7 @@ import OrderPage from "@/myComponents/DashBoard/UserDashBoard/OrderPage";
 import Users from "@/myComponents/DashBoard/AdminDashBoard/Users";
 import ProtectedProfile from "@/myComponents/DashBoard/ProtectedProfile";
 import AdminOrderPage from "@/myComponents/DashBoard/AdminDashBoard/AdminOrderPage";
+import AdminProduct from "@/myComponents/DashBoard/AdminDashBoard/AdminProducts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         {
           path: "AdminOrder",
           element: <AdminOrderPage />,
+        },
+        {
+          path: "AdminProduct",
+          element: <AdminProduct/>,
         },
         {
           index:true,

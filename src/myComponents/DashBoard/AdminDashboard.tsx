@@ -1,5 +1,5 @@
 
-import { Home, Inbox,User2Icon } from "lucide-react"; 
+import { Home, Inbox,User2Icon,Package } from "lucide-react"; 
 import { NavLink, Outlet } from "react-router-dom";
 import React from "react";
 const items = [
@@ -23,6 +23,11 @@ const items = [
     title: "Orders",
     url: "/dashboard/AdminOrder", 
     icon: <Inbox className="w-5 h-5" />,
+  },
+  {
+    title: "Products",
+    url: "/dashboard/AdminProduct", 
+    icon: <Package className="w-5 h-5" />,
   },
 ];
 const AdminDashboard = () => {
