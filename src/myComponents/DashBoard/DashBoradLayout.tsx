@@ -13,8 +13,8 @@ const DashBoradLayout = () => {
     if(!user){
         navigate('/login')
     }
-    const role = user?.userRole;
-    console.log(role);
+    // const role = user?.userRole;
+    const role='admin'
 
     return (
         <div>

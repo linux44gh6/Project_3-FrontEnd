@@ -1,8 +1,7 @@
 // UserDashboard.tsx
-import { Home, Inbox,User2Icon } from "lucide-react"; // Optional: You can use icons from lucide-react for visual appeal
+import { Home, Inbox,User2Icon } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 import React from "react";
-import Nav from "../NavBar/Nav";
 const items = [
   {
     title: "Home",
@@ -11,7 +10,7 @@ const items = [
   },
   {
     title: "Profile",
-    url: "/dashboard/profile", 
+    url: "", 
     icon: <User2Icon className="w-5 h-5" />,
   },
   {
@@ -23,7 +22,6 @@ const items = [
 
 const UserDashBoard = () => {
   return (
-
    <div>
      <div className="flex min-h-screen">
       <div className="w-64 bg-gray-800 text-white p-4">
