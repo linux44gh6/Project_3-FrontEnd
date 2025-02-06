@@ -12,10 +12,13 @@ import ProtectedProfile from "@/myComponents/DashBoard/ProtectedProfile";
 import AdminOrderPage from "@/myComponents/DashBoard/AdminDashBoard/AdminOrderPage";
 import AdminProduct from "@/myComponents/DashBoard/AdminDashBoard/AdminProducts";
 import PaymentSucees from "@/Pages/PaymentSucees";
+import ProductForm from "@/myComponents/DashBoard/AdminDashBoard/CreateProducts";
+import ErrorPage from "@/Pages/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement:<ErrorPage/>,
     children: routeGenarator(userPath),
   },
   {
@@ -41,6 +44,10 @@ const router = createBrowserRouter([
         {
           path: "AdminProduct",
           element: <AdminProduct/>,
+        },
+        {
+          path: "createProduct",
+          element: <ProductForm/>,
         },
         {
           index:true,

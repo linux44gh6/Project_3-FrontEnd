@@ -29,6 +29,11 @@ const items = [
     url: "/dashboard/AdminProduct", 
     icon: <Package className="w-5 h-5" />,
   },
+  {
+    title: "Create Products",
+    url: "/dashboard/createProduct", 
+    icon: <Package className="w-5 h-5" />,
+  },
 ];
 const AdminDashboard = () => {
     return (
